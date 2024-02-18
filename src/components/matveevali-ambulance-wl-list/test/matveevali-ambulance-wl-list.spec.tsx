@@ -7,7 +7,7 @@ describe('matveevali-ambulance-wl-list', () => {
       components: [MatveevaliAmbulanceWlList],
       html: `<matveevali-ambulance-wl-list></matveevali-ambulance-wl-list>`,
     });
-    const wlList = page.rootInstance as PfxAmbulanceWlList;
+    const wlList = page.rootInstance as MatveevaliAmbulanceWlList;
     const expectedPatients = wlList?.waitingPatients?.length 
 
     const items = page.root.shadowRoot.querySelectorAll("md-list-item");
