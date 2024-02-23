@@ -20,6 +20,8 @@ log.txt
 node_modules/
 $RECYCLE.BIN/
 
+ambulance-gitops/
+
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
