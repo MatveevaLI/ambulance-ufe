@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'matveevali-ambulance-wl-list',
@@ -6,7 +6,7 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class MatveevaliAmbulanceWlList {
-
+  @Event({ eventName: "entry-clicked" }) entryClicked: EventEmitter<string>;
   waitingPatients: any[];
 
   private async getWaitingPatientsAsync() {
@@ -44,8 +44,8 @@ export class MatveevaliAmbulanceWlList {
     return (
       <Host>
         <md-list>
-          {this.waitingPatients.map(patient =>
-            <md-list-item>
+          {this.waitingPatients.map((patient, index) =>
+            <md-list-item onClick={() => this.entryClicked.emit(index.toString())}>
               <div slot="headline">{patient.name}</div>
               <div slot="supporting-text">{"Predpokladaný vstup: " + this.isoDateToLocale(patient.estimatedStart)}</div>
               <md-icon slot="start">person</md-icon>
@@ -56,8 +56,8 @@ export class MatveevaliAmbulanceWlList {
       </Host>
     );
   }
-  private isoDateToLocale(iso:string) {
-    if(!iso) return '';
+  private isoDateToLocale(iso: string) {
+    if (!iso) return '';
     return new Date(Date.parse(iso)).toLocaleTimeString()
   }
 }

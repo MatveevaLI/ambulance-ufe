@@ -6,24 +6,84 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MatveevaliAmbulanceWlApp {
+        "basePath": string;
+    }
+    interface MatveevaliAmbulanceWlEditor {
+        "entryId": string;
+    }
     interface MatveevaliAmbulanceWlList {
     }
 }
+export interface MatveevaliAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMatveevaliAmbulanceWlEditorElement;
+}
+export interface MatveevaliAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMatveevaliAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLMatveevaliAmbulanceWlAppElement extends Components.MatveevaliAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLMatveevaliAmbulanceWlAppElement: {
+        prototype: HTMLMatveevaliAmbulanceWlAppElement;
+        new (): HTMLMatveevaliAmbulanceWlAppElement;
+    };
+    interface HTMLMatveevaliAmbulanceWlEditorElementEventMap {
+        "editor-closed": string;
+    }
+    interface HTMLMatveevaliAmbulanceWlEditorElement extends Components.MatveevaliAmbulanceWlEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMatveevaliAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLMatveevaliAmbulanceWlEditorElement, ev: MatveevaliAmbulanceWlEditorCustomEvent<HTMLMatveevaliAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMatveevaliAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLMatveevaliAmbulanceWlEditorElement, ev: MatveevaliAmbulanceWlEditorCustomEvent<HTMLMatveevaliAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLMatveevaliAmbulanceWlEditorElement: {
+        prototype: HTMLMatveevaliAmbulanceWlEditorElement;
+        new (): HTMLMatveevaliAmbulanceWlEditorElement;
+    };
+    interface HTMLMatveevaliAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLMatveevaliAmbulanceWlListElement extends Components.MatveevaliAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMatveevaliAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLMatveevaliAmbulanceWlListElement, ev: MatveevaliAmbulanceWlListCustomEvent<HTMLMatveevaliAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMatveevaliAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLMatveevaliAmbulanceWlListElement, ev: MatveevaliAmbulanceWlListCustomEvent<HTMLMatveevaliAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLMatveevaliAmbulanceWlListElement: {
         prototype: HTMLMatveevaliAmbulanceWlListElement;
         new (): HTMLMatveevaliAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "matveevali-ambulance-wl-app": HTMLMatveevaliAmbulanceWlAppElement;
+        "matveevali-ambulance-wl-editor": HTMLMatveevaliAmbulanceWlEditorElement;
         "matveevali-ambulance-wl-list": HTMLMatveevaliAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface MatveevaliAmbulanceWlApp {
+        "basePath"?: string;
+    }
+    interface MatveevaliAmbulanceWlEditor {
+        "entryId"?: string;
+        "onEditor-closed"?: (event: MatveevaliAmbulanceWlEditorCustomEvent<string>) => void;
+    }
     interface MatveevaliAmbulanceWlList {
+        "onEntry-clicked"?: (event: MatveevaliAmbulanceWlListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
+        "matveevali-ambulance-wl-app": MatveevaliAmbulanceWlApp;
+        "matveevali-ambulance-wl-editor": MatveevaliAmbulanceWlEditor;
         "matveevali-ambulance-wl-list": MatveevaliAmbulanceWlList;
     }
 }
@@ -31,6 +91,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "matveevali-ambulance-wl-app": LocalJSX.MatveevaliAmbulanceWlApp & JSXBase.HTMLAttributes<HTMLMatveevaliAmbulanceWlAppElement>;
+            "matveevali-ambulance-wl-editor": LocalJSX.MatveevaliAmbulanceWlEditor & JSXBase.HTMLAttributes<HTMLMatveevaliAmbulanceWlEditorElement>;
             "matveevali-ambulance-wl-list": LocalJSX.MatveevaliAmbulanceWlList & JSXBase.HTMLAttributes<HTMLMatveevaliAmbulanceWlListElement>;
         }
     }

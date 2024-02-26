@@ -1,0 +1,31 @@
+:host {
+  --_wl-editor_gap: var(--wl-gap, 0.5rem);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_wl-editor_gap);
+  padding: var(--_wl-editor_gap);
+}
+
+.duration-slider {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1rem;
+
+}
+
+.stretch-fill {
+  flex: 10 0 0;
+}
+
+md-divider {
+  margin-bottom: var(--_wl-editor_gap);
+}
