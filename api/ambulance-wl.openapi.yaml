@@ -1,0 +1,157 @@
+openapi: 3.0.0
+servers:
+  - description: Cluster Endpoint
+    url: /api
+info:
+  description: Ambulance Waiting List management for Web-In-Cloud system
+  version: "1.0.0"
+  title: Waiting List Api
+  contact:
+    email: ladaivanna.matveeva@gmail.com
+  license:
+    name: CC BY 4.0
+    url: "https://creativecommons.org/licenses/by/4.0/"
+tags:
+ - name: ambulanceWaitingList
+   description: Ambulance Waiting List API
+paths:
+ "/waiting-list/{ambulanceId}/entries":
+   get:
+     tags:
+       - ambulanceWaitingList
+     summary: Provides the ambulance waiting list
+     operationId: getWaitingListEntries
+     description: By using ambulanceId you get list of entries in ambulance waiting list
+     parameters:
+       - in: path
+         name: ambulanceId
+         description: pass the id of the particular ambulance
+         required: true
+         schema:
+           type: string
+     responses:
+       "200":
+         description: value of the waiting list entries
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 $ref: "#/components/schemas/WaitingListEntry"
+             examples:
+               response:
+                 $ref: "#/components/examples/WaitingListEntriesExample"
+       "404":
+         description: Ambulance with such ID does not exist
+components:
+ schemas:
+   WaitingListEntry:
+     type: object
+     required: [id, patientId, waitingSince, estimatedDurationMinutes]
+     properties:
+       id:
+         type: string
+         example: x321ab3
+         description: Unique id of the entry in this waiting list
+       name:
+         type: string
+         example: Jožko Púčik
+         description: Name of patient in waiting list
+       patientId:
+         type: string
+         example: 460527-jozef-pucik
+         description: Unique identifier of the patient known to Web-In-Cloud system
+       waitingSince:
+         type: string
+         format: date-time
+         example: "2038-12-24T10:05:00Z"
+         description: Timestamp since when the patient entered the waiting list
+       estimatedStart:
+         type: string
+         format: date-time
+         example: "2038-12-24T10:35:00Z"
+         description: Estimated time of entering ambulance. Ignored on post.
+       estimatedDurationMinutes:
+         type: integer
+         format: int32
+         example: 15
+         description: >-
+           Estimated duration of ambulance visit. If not provided then it will
+           be computed based on condition and ambulance settings
+       condition:
+         $ref: "#/components/schemas/Condition"
+     example:
+       $ref: "#/components/examples/WaitingListEntryExample"
+   Condition:
+     description: "Describes disease, symptoms, or other reasons of patient   visit"
+     required:
+       - value
+     properties:
+       value:
+         type: string
+         example: Teploty
+       code:
+         type: string
+         example: subfebrilia
+       reference:
+         type: string
+         format: url
+         example: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
+         description: Link to encyclopedical explanation of the patient's condition
+       typicalDurationMinutes:
+         type: integer
+         format: int32
+         example: 20
+     example:
+       $ref: "#/components/examples/ConditionExample"
+examples:
+    WaitingListEntryExample:
+      summary: Ľudomír Zlostný waiting
+      description: |
+        Entry represents a patient waiting in the ambulance prep room with
+        defined symptoms
+      value:
+        id: x321ab3
+        name: Ľudomír Zlostný
+        patientId: 74895-ludomir-zlostny
+        waitingSince: "2038-12-24T10:05:00.000Z"
+        estimatedStart: "2038-12-24T10:35:00.000Z"
+        estimatedDurationMinutes: 15
+        condition:
+          value: Nevoľnosť
+          code: nausea
+          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
+    ConditionExample:
+      summary: Conditions and symptoms
+      description: list of few symptoms that can be chosen by patients
+      value:
+        valuee: Teploty
+        code: subfebrilia
+        reference: >-
+          https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/
+    WaitingListEntriesExample:
+      summary: List of waiting patients
+      description: |
+        Example waiting list containing 2 patients
+      value:
+      - id: x321ab3
+        name: Jožko Púčik
+        patientId: 460527-jozef-pucik
+        waitingSince: "2038-12-24T10:05:00.000Z"
+        estimatedStart: "2038-12-24T10:35:00.000Z"
+        estimatedDurationMinutes: 15
+        condition:
+          value: Teploty
+          code: subfebrilia
+          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
+      - id: x321ab4
+        name: Ferdinand Trety
+        patientId: 780907-ferdinand-tre
+        waitingSince: "2038-12-24T10:25:00.000Z"
+        estimatedStart: "2038-12-24T10:50:00.000Z"
+        estimatedDurationMinutes: 25
+        condition:
+          value: Nevoľnosť
+          code: nausea
+          
+          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
