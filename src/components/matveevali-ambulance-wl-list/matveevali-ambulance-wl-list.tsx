@@ -41,8 +41,8 @@ export class MatveevaliAmbulanceWlList {
           ? <div class="error">{this.errorMessage}</div>
           :
           <md-list>
-            {this.waitingPatients.map((patient, index) =>
-              <md-list-item onClick={() => this.entryClicked.emit(index.toString())}>
+            {this.waitingPatients.map((patient) =>
+              <md-list-item onClick={() => this.entryClicked.emit(patient.id)}>
                 <div slot="headline">{patient.name}</div>
                 <div slot="supporting-text">{"Predpokladaný vstup: " + this.isoDateToLocale(patient.estimatedStart)}</div>
                 <md-icon slot="start">person</md-icon>
@@ -50,6 +50,10 @@ export class MatveevaliAmbulanceWlList {
             )}
           </md-list>
         }
+        <md-filled-icon-button class="add-button"
+          onclick={() => this.entryClicked.emit("@new")}>
+          <md-icon>add</md-icon>
+        </md-filled-icon-button>
       </Host>
     );
   }

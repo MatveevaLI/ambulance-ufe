@@ -10,6 +10,7 @@ import '@material/web/button/filled-tonal-button'
 import '@material/web/button/outlined-button'
 import '@material/web/divider/divider'
 import { registerNavigationApi } from './navigation.js'
+import '@material/web/iconbutton/filled-icon-button'
 
 export default function() { // or export default async function()
   registerNavigationApi()

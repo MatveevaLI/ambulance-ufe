@@ -1,10 +1,7 @@
 :host {
   --_wl-editor_gap: var(--wl-gap, 0.5rem);
-
-  display: flex;
-  flex-direction: column;
-  gap: var(--_wl-editor_gap);
-  padding: var(--_wl-editor_gap);
+  width: 100%;
+  height: 100%;
 }
 
 .duration-slider {
@@ -28,4 +25,19 @@
 
 md-divider {
   margin-bottom: var(--_wl-editor_gap);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--_wl-editor_gap);
+  padding: var(--_wl-editor_gap);
+}
+
+.error {
+  margin: auto;
+  color: red;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
 }
