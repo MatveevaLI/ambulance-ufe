@@ -1,0 +1,19 @@
+{
+    "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+    "generator-cli": {
+        "useDocker": true,
+        "version": "6.6.0",
+        "generators": {
+            "ambulance-wl": {
+                "generatorName": "typescript-axios",
+                "glob": "api/ambulance-wl.openapi.yaml",
+                "output": "#{cwd}/src/api/ambulance-wl",
+                "additionalProperties": {
+                    "supportsES6": "true",
+                    "withInterfaces": true,
+                    "enablePostProcessFile": true
+                }
+            }
+        }
+    }
+ }

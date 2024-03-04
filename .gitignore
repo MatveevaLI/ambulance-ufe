@@ -26,3 +26,5 @@ ambulance-gitops/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+
+.openapi.json

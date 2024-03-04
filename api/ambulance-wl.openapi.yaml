@@ -44,67 +44,67 @@ paths:
        "404":
          description: Ambulance with such ID does not exist
 components:
- schemas:
-   WaitingListEntry:
-     type: object
-     required: [id, patientId, waitingSince, estimatedDurationMinutes]
-     properties:
-       id:
-         type: string
-         example: x321ab3
-         description: Unique id of the entry in this waiting list
-       name:
-         type: string
-         example: Jožko Púčik
-         description: Name of patient in waiting list
-       patientId:
-         type: string
-         example: 460527-jozef-pucik
-         description: Unique identifier of the patient known to Web-In-Cloud system
-       waitingSince:
-         type: string
-         format: date-time
-         example: "2038-12-24T10:05:00Z"
-         description: Timestamp since when the patient entered the waiting list
-       estimatedStart:
-         type: string
-         format: date-time
-         example: "2038-12-24T10:35:00Z"
-         description: Estimated time of entering ambulance. Ignored on post.
-       estimatedDurationMinutes:
-         type: integer
-         format: int32
-         example: 15
-         description: >-
-           Estimated duration of ambulance visit. If not provided then it will
-           be computed based on condition and ambulance settings
-       condition:
-         $ref: "#/components/schemas/Condition"
-     example:
-       $ref: "#/components/examples/WaitingListEntryExample"
-   Condition:
-     description: "Describes disease, symptoms, or other reasons of patient   visit"
-     required:
-       - value
-     properties:
-       value:
-         type: string
-         example: Teploty
-       code:
-         type: string
-         example: subfebrilia
-       reference:
-         type: string
-         format: url
-         example: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
-         description: Link to encyclopedical explanation of the patient's condition
-       typicalDurationMinutes:
-         type: integer
-         format: int32
-         example: 20
-     example:
-       $ref: "#/components/examples/ConditionExample"
-examples:
+  schemas:
+    WaitingListEntry:
+      type: object
+      required: [id, patientId, waitingSince, estimatedDurationMinutes]
+      properties:
+        id:
+          type: string
+          example: x321ab3
+          description: Unique id of the entry in this waiting list
+        name:
+          type: string
+          example: Jožko Púčik
+          description: Name of patient in waiting list
+        patientId:
+          type: string
+          example: 460527-jozef-pucik
+          description: Unique identifier of the patient known to Web-In-Cloud system
+        waitingSince:
+          type: string
+          format: date-time
+          example: "2038-12-24T10:05:00Z"
+          description: Timestamp since when the patient entered the waiting list
+        estimatedStart:
+          type: string
+          format: date-time
+          example: "2038-12-24T10:35:00Z"
+          description: Estimated time of entering ambulance. Ignored on post.
+        estimatedDurationMinutes:
+          type: integer
+          format: int32
+          example: 15
+          description: >-
+            Estimated duration of ambulance visit. If not provided then it will
+            be computed based on condition and ambulance settings
+        condition:
+          $ref: "#/components/schemas/Condition"
+      example:
+        $ref: "#/components/examples/WaitingListEntryExample"
+    Condition:
+      description: "Describes disease, symptoms, or other reasons of patient   visit"
+      required:
+        - value
+      properties:
+        value:
+          type: string
+          example: Teploty
+        code:
+          type: string
+          example: subfebrilia
+        reference:
+          type: string
+          format: url
+          example: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
+          description: Link to encyclopedical explanation of the patient's condition
+        typicalDurationMinutes:
+          type: integer
+          format: int32
+          example: 20
+      example:
+        $ref: "#/components/examples/ConditionExample"
+  examples:
     WaitingListEntryExample:
       summary: Ľudomír Zlostný waiting
       description: |
