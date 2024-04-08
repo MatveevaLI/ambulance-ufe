@@ -38,6 +38,8 @@ export class MatveevaliAmbulanceWlApp {
   }
 
   render() {
+    console.debug("matveevali-ambulance-wl-app.render() - path: %s", this.relativePath);
+
     let element = "list"
     let entryId = "@new"
 
