@@ -120,34 +120,6 @@ paths:
                   $ref: "#/components/examples/WaitingListEntryExample"
         "404":
           description: Ambulance or Entry with such ID does not exists
-  "/waiting-list/{ambulanceId}/condition":
-    get:
-      tags:
-        - ambulanceConditions
-      summary: Provides the list of conditions associated with ambulance
-      operationId: getConditions
-      description: By using ambulanceId you get list of predefined conditions
-      parameters:
-        - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: value of the predefined conditions
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Condition"
-              examples:
-                response:
-                  $ref: "#/components/examples/ConditionsListExample"
-        "404":
-          description: Ambulance with such ID does not exists
     put:
       tags:
         - ambulanceWaitingList
@@ -219,6 +191,34 @@ paths:
           description: Item deleted
         "404":
           description: Ambulance or Entry with such ID does not exists
+  "/waiting-list/{ambulanceId}/condition":
+    get:
+      tags:
+        - ambulanceConditions
+      summary: Provides the list of conditions associated with ambulance
+      operationId: getConditions
+      description: By using ambulanceId you get list of predefined conditions
+      parameters:
+        - in: path
+          name: ambulanceId
+          description: pass the id of the particular ambulance
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: value of the predefined conditions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Condition"
+              examples:
+                response:
+                  $ref: "#/components/examples/ConditionsListExample"
+        "404":
+          description: Ambulance with such ID does not exists
 components:
   schemas:
     WaitingListEntry:
@@ -305,6 +305,28 @@ components:
         code: subfebrilia
         reference: >-
           https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/
+    ConditionsListExample:
+      summary: Sample of GP ambulance conditions
+      description: |
+        Example list of possible conditions, symptoms, and visit reasons
+      value:
+        - value: Teploty
+          code: subfebrilia
+          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
+          typicalDurationMinutes: 20
+        - value: Nevoľnosť
+          code: nausea
+          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
+          typicalDurationMinutes: 45
+        - value: Kontrola
+          code: followup
+          typicalDurationMinutes: 15
+        - value: Administratívny úkon
+          code: administration
+          typicalDurationMinutes: 10
+        - value: Odber krvi
+          code: blood-test
+          typicalDurationMinutes: 10
     WaitingListEntriesExample:
       summary: List of waiting patients
       description: |
@@ -329,27 +351,4 @@ components:
           condition:
             value: Nevoľnosť
             code: nausea
-
             reference: "https://zdravoteka.sk/priznaky/nevolnost/"
-    ConditionsListExample:
-      summary: Sample of GP ambulance conditions
-      description: |
-        Example list of possible conditions, symptoms, and visit reasons
-      value:
-        - value: Teploty
-          code: subfebrilia
-          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
-          typicalDurationMinutes: 20
-        - value: Nevoľnosť
-          code: nausea
-          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
-          typicalDurationMinutes: 45
-        - value: Kontrola
-          code: followup
-          typicalDurationMinutes: 15
-        - value: Administratívny úkon
-          code: administration
-          typicalDurationMinutes: 10
-        - value: Odber krvi
-          code: blood-test
-          typicalDurationMinutes: 10
